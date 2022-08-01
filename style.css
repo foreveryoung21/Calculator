@@ -64,11 +64,11 @@ body{
 
 
 
-.calculator-body .button{
+.calculator-body .button-number ,.button-operation , .button-clear  , .button-equals , .button-decimal{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
+    width: 20%;
     height: 12%;
     background-color: blue;
     margin: 8px;
@@ -77,3 +77,11 @@ body{
     font-size: 12px;
 
 }
+
+.calculator-body .button-number:hover ,.button-operation:hover , .button-clear:hover  , .button-equals:hover , .button-decimal:hover{
+   
+    background-color: coral;
+
+}
+
+

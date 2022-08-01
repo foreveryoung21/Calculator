@@ -14,10 +14,6 @@
 // when you pres the = operating on both the previous and new number 
 
 
-let plus = document.querySelector(".plus");
-let equal = document.querySelector(".equal");
-let input = document.querySelector("input");
-
 
 /*
 console.log(input);
@@ -44,4 +40,77 @@ equal.addEventListener("click",()=>{
 
 //hash table array linked list queue 
 
-// background-image: linear-gradient(to right top, #7f6bd1, #8170d5, #8475da, #867ade, #897fe2, #8780e5, #8680e9, #8481ec, #7c7ef0, #747bf3, #6a78f7, #5f75fb);    
+let buttons = document.querySelectorAll(".button");
+let inputDisplay = document.querySelector(".input-display");
+let calculatorBody = document.querySelector(".calculator-body");
+
+function createTextNode(text){
+    let textNode = document.createTextNode(text);
+    return textNode;
+
+}
+
+function clearText(){
+inputDisplay.innerText="";
+}
+
+
+function operation(prev,op){
+    
+    if(op === "+"){
+       return function(current){
+        return parseInt(prev)+parseInt(current);
+       }
+    }else if(op === "-"){
+        return function(current){
+            return parseInt(prev)-parseInt(current);
+        }
+    }else if(op ==="*"){
+        return function(current){
+            return parseInt(prev)* parseInt(current);
+        }
+    }else if (op === "/"){
+        return function(current){
+            return parseInt(prev)/parseInt(current);
+        }
+    }
+    }
+
+
+
+
+
+
+    calculatorBody.addEventListener("click",(event)=>{
+      
+        if(event.target.matches(".button-number ,.button-decimal")){
+            if(inputDisplay.innerText.length>=15){
+                return;
+            }
+            let elementText = event.target.innerText;
+            inputDisplay.appendChild(createTextNode(elementText));
+     
+            
+        }else if(event.target.matches(".button-clear")){
+            clearText();
+           
+        }else if(event.target.matches(".button-operation")){
+            let operationText = event.target.innerText;
+            let values = inputDisplay.innerText;
+            op = operation(values,operationText);
+            clearText();
+        }else if(event.target.matches(".button-equals")){
+            let values = inputDisplay.innerText;
+            let calulatedResult = op(values);
+            inputDisplay.innerText = calulatedResult;
+        }
+
+
+        
+   
+     
+    
+    })
+    
+
+
